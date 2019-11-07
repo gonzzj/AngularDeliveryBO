@@ -1,0 +1,7 @@
+<nav aria-label="Page navigation" class="float-right">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" routerLink="/delivery-search/{{previousPage}}">&laquo;</a></li>
+    <li class="page-item" *ngFor="let item of arrayPages; let i = index"><a class="page-link" routerLink="/delivery-search/{{i + 1}}">{{i + 1}}</a></li>
+    <li class="page-item"><a class="page-link" routerLink="/delivery-search/{{nextPage}}">&raquo;</a></li>
+  </ul>
+</nav>

@@ -1,0 +1,1 @@
+<button *ngIf="column.orderable" class="btn btn-outline-info btn-{{column.field}} ml-2" (click)="sortColumn(column.field, sortDirection)" role="button"><i class="fa" [ngClass]="{'fa-sort':sortDirection === 0, 'fa-sort-down':sortDirection === 1, 'fa-sort-up':sortDirection === 2}"></i></button>

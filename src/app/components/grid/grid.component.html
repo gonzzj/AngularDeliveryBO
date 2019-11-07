@@ -1,0 +1,15 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let column of columns">{{column.title}} <app-grid-sort [column]="column" [data]="data"></app-grid-sort></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let house of data | slice:rowsMin:rowsMax">
+      <td *ngFor="let column of columns">{{house[column.field]}}</td>
+      <td><a class="btn btn-danger mr-2 text-white" (click)="removeHouse(house.id, house.name)"><i class="fa fa-trash"></i></a><a routerLink="/delivery-form/{{house.id}}" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+    </tr>
+  </tbody>
+</table>
+<app-paginator [rows]="data.length" [cantRowsPerPage]="cantRowsPerPage"></app-paginator>

@@ -1,0 +1,124 @@
+<h4 class="card-title">Datos administrativos</h4>
+<form [formGroup]="deliveryForm" novalidate (ngSubmit)="saveHouse(deliveryForm.value, deliveryForm.valid)">
+  <input type="hidden" formControlName="id">
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-4">
+      <input type="text" formControlName="name" id="inputName" class="form-control">
+      <small class="text-danger" [hidden]="deliveryForm.controls.name.valid || !submitted">{{getErrorMessage('name', deliveryForm.controls.name)}}</small>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPhone" class="col-sm-2 col-form-label">Teléfono</label>
+    <div class="col-sm-4">
+      <input type="text" formControlName="phone" id="inputPhone" class="form-control">
+      <small class="text-danger" [hidden]="deliveryForm.controls.phone.valid || !submitted">{{getErrorMessage('phone', deliveryForm.controls.phone)}}</small>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputDescription" class="col-sm-2 col-form-label">Descripción</label>
+    <div class="col-sm-6">
+      <textarea id="inputDescription" formControlName="description" class="form-control" rows="5"></textarea>
+      <small class="text-danger" [hidden]="deliveryForm.controls.description.valid || !submitted">{{getErrorMessage('description', deliveryForm.controls.description)}}</small>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputSpecialities" class="col-sm-2 col-form-label">Especialidades</label>
+    <div class="col-sm-6">
+      <textarea id="inputSpecialities" formControlName="specialities" class="form-control" rows="4"></textarea>
+      <small class="text-danger" [hidden]="deliveryForm.controls.specialities.valid || !submitted">{{getErrorMessage('specialities', deliveryForm.controls.specialities)}}</small>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputAddress" class="col-sm-2 col-form-label">Dirección</label>
+    <div class="col-sm-4">
+      <input type="text" formControlName="address" id="inputAddress" class="form-control">
+      <small class="text-danger" [hidden]="deliveryForm.controls.address.valid || !submitted">{{getErrorMessage('address', deliveryForm.controls.address)}}</small>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputHourMin" class="col-sm-2 col-form-label">Horario de atención</label>
+    <div class="input-group col-sm-2">
+      <input type="time" formControlName="hourMin" id="inputHourMin" class="form-control"><div class="input-group-append"><span class="input-group-text"><i class="fa fa-hourglass-start"></i></span></div>
+      <small class="text-danger" [hidden]="deliveryForm.controls.hourMin.valid || !submitted">{{getErrorMessage('hourMin', deliveryForm.controls.hourMin)}}</small>
+    </div>
+    <div class="input-group col-sm-2">
+      <input type="time" formControlName="hourMax" id="inputHourMax" class="form-control"><div class="input-group-append"><span class="input-group-text"><i class="fa fa-hourglass-end"></i></span></div>
+      <small class="text-danger" [hidden]="deliveryForm.controls.hourMax.valid || !submitted">{{getErrorMessage('hourMax', deliveryForm.controls.hourMax)}}</small>
+    </div>
+  </div>
+  <div class="card-deck-wrapper mt-4">
+    <div class="card-deck">
+      <div class="card card-block border-0" formGroupName="admContact">
+        <h4 class="card-title mb-5 pb-1">Contacto administrativo</h4>
+        <div class="form-group row">
+          <label for="inputAdmContactName" class="col-sm-2 col-form-label">Nombre</label>
+          <div class="col-sm-8">
+            <input type="text" formControlName="name" id="inputAdmContactName" class="form-control">
+            <small class="text-danger" [hidden]="deliveryForm.controls.admContact.controls.name.valid || !submitted">{{getErrorMessage('nameContact', deliveryForm.controls.admContact.controls.name)}}</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputAdmContactLastname" class="col-sm-2 col-form-label">Apellido</label>
+          <div class="col-sm-8">
+            <input type="text" formControlName="lastname" id="inputAdmContactLastname" class="form-control">
+            <small class="text-danger" [hidden]="deliveryForm.controls.admContact.controls.lastname.valid || !submitted">{{getErrorMessage('lastname', deliveryForm.controls.admContact.controls.lastname)}}</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputAdmContactPhone" class="col-sm-2 col-form-label">Teléfono</label>
+          <div class="col-sm-8">
+            <input type="text" formControlName="phone" id="inputAdmContactPhone" class="form-control">
+            <small class="text-danger" [hidden]="deliveryForm.controls.admContact.controls.phone.valid || !submitted">{{getErrorMessage('phoneContact', deliveryForm.controls.admContact.controls.phone)}}</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputAdmContactMail" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-8">
+            <input type="text" formControlName="mail" id="inputAdmContactMail" class="form-control">
+            <small class="text-danger" [hidden]="deliveryForm.controls.admContact.controls.mail.valid || !submitted">{{getErrorMessage('mail', deliveryForm.controls.admContact.controls.mail)}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="card card-block border-0" formGroupName="comContact">
+        <h4 class="card-title">Contacto comercial</h4>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" formControlName="idemAdmContact" id="idemAdmContact" (change)="copyAdmContact()">
+          <label class="form-check-label" for="idemAdmContact">Idem contacto administrativo</label>
+        </div>
+        <div class="form-group row">
+          <label for="inputComContactName" class="col-sm-2 col-form-label">Nombre</label>
+          <div class="col-sm-8">
+            <input type="text" formControlName="name" id="inputComContactName" class="form-control" [readOnly]="readOnly">
+            <small class="text-danger" [hidden]="deliveryForm.controls.comContact.controls.name.valid || !submitted">{{getErrorMessage('nameContact', deliveryForm.controls.comContact.controls.name)}}</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputComContactLastname" class="col-sm-2 col-form-label">Apellido</label>
+          <div class="col-sm-8">
+            <input type="text" formControlName="lastname" id="inputComContactLastname" class="form-control" [readOnly]="readOnly">
+            <small class="text-danger" [hidden]="deliveryForm.controls.comContact.controls.mail.valid || !submitted">{{getErrorMessage('lastname', deliveryForm.controls.comContact.controls.lastname)}}</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputComContactPhone" class="col-sm-2 col-form-label">Teléfono</label>
+          <div class="col-sm-8">
+            <input type="text" formControlName="phone" id="inputComContactPhone" class="form-control" [readOnly]="readOnly">
+            <small class="text-danger" [hidden]="deliveryForm.controls.comContact.controls.phone.valid || !submitted">{{getErrorMessage('phoneContact', deliveryForm.controls.comContact.controls.phone)}}</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputComContactMail" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-8">
+            <input type="text" formControlName="mail" id="inputComContactMail" class="form-control" [readOnly]="readOnly">
+            <small class="text-danger" [hidden]="deliveryForm.controls.comContact.controls.mail.valid || !submitted">{{getErrorMessage('mail', deliveryForm.controls.comContact.controls.mail)}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3 ml-auto">
+    <a class="btn btn-secondary btn-lg mr-2 text-white" role="button" (click)="cancelHouse()">Cancelar</a>
+    <button type="submit" class="btn btn-primary btn-lg" role="button">Guardar</button>
+  </div>
+</form>
